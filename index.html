@@ -75,6 +75,35 @@
       }
     }
 
+    .buttons {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .buttons button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #c75ba6, #f9a1d0);
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .buttons button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    .buttons button span {
+      margin-left: 8px;
+    }
+
     .texto-inspirador {
       max-width: 600px;
       margin: 40px auto 60px;
@@ -101,9 +130,9 @@
   </div>
 
   <div class="buttons">
-    <button onclick="salvarImagem()">Salvar imagem</button>
-    <button onclick="compartilharWhatsApp()">Compartilhar no WhatsApp</button>
-    <button onclick="compartilharFacebook()">Compartilhar no Facebook</button>
+    <button onclick="salvarImagem()">💾 <span>Salvar imagem</span></button>
+    <button onclick="compartilharWhatsApp()">📲 <span>Compartilhar no WhatsApp</span></button>
+    <button onclick="compartilharFacebook()">📘 <span>Compartilhar no Facebook</span></button>
   </div>
 
   <div class="texto-inspirador">
@@ -133,6 +162,7 @@
     function showImage(index) {
       const img = document.getElementById('carouselImage');
       img.src = images[index];
+      img.alt = `Imagem ${index + 1}`;
     }
 
     function nextImage() {
@@ -143,6 +173,29 @@
     function previousImage() {
       currentIndex = (currentIndex - 1 + images.length) % images.length;
       showImage(currentIndex);
+    }
+
+    function salvarImagem() {
+      const imgSrc = images[currentIndex];
+      const link = document.createElement('a');
+      link.href = imgSrc;
+      link.download = imgSrc;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function compartilharWhatsApp() {
+      const imgSrc = window.location.href + images[currentIndex];
+      const texto = `Dá uma olhadinha nesta imagem: ${imgSrc}`;
+      const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
+      window.open(url, '_blank');
+    }
+
+    function compartilharFacebook() {
+      const imgSrc = window.location.href + images[currentIndex];
+      const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(imgSrc)}`;
+      window.open(url, '_blank');
     }
   </script>
 </body>
