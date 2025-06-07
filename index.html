@@ -68,6 +68,30 @@
       right: -20px;
     }
 
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      background-color: #c75ba6;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: #a24488;
+    }
+
     @media (max-width: 650px) {
       .arrow.left {
         left: 10px;
@@ -90,6 +114,12 @@
     <button class="arrow right" onclick="nextImage()">❯</button>
   </div>
 
+  <div class="buttons">
+    <a id="saveBtn" class="btn" download target="_blank">💾 Salvar imagem</a>
+    <a id="whatsBtn" class="btn" target="_blank">📤 WhatsApp</a>
+    <a id="fbBtn" class="btn" target="_blank">📘 Facebook</a>
+  </div>
+
   <script>
     const images = [
       "Imagem01.jpg",
@@ -104,8 +134,21 @@
 
     function showImage(index) {
       const img = document.getElementById("carouselImage");
-      img.src = images[index];
+      const imgPath = images[index];
+      img.src = imgPath;
       img.alt = `Imagem ${index + 1}`;
+
+      // Atualiza links dos botões
+      document.getElementById("saveBtn").href = imgPath;
+
+      const siteURL = encodeURIComponent(window.location.href);
+      const imageURL = encodeURIComponent(imgPath);
+
+      document.getElementById("whatsBtn").href =
+        `https://api.whatsapp.com/send?text=${siteURL}`;
+      
+      document.getElementById("fbBtn").href =
+        `https://www.facebook.com/sharer/sharer.php?u=${siteURL}`;
     }
 
     function nextImage() {
@@ -117,6 +160,10 @@
       currentIndex = (currentIndex - 1 + images.length) % images.length;
       showImage(currentIndex);
     }
+
+    // Inicia com a primeira imagem
+    showImage(currentIndex);
   </script>
+
 </body>
 </html>
