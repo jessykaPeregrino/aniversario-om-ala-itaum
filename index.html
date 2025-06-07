@@ -1,120 +1,122 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Encontrar Alegria em Cristo ❤️</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #fefefe;
-    margin: 0; padding: 0;
-    color: #444;
-    text-align: center;
-  }
-  h1 {
-    margin-top: 40px;
-    font-size: 28px;
-    color: #b15c9e;
-  }
-  .carousel-container {
-    position: relative;
-    max-width: 600px;
-    margin: 40px auto;
-  }
-  .carousel {
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  }
-  .carousel img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  /* Setas fora da imagem, na lateral */
-  .arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(177, 92, 158, 0.8);
-    border: none;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    z-index: 10;
-  }
-  .arrow:hover {
-    background: rgba(177, 92, 158, 1);
-  }
-  .arrow.left {
-    left: -60px; /* afastado da imagem */
-  }
-  .arrow.right {
-    right: -60px; /* afastado da imagem */
-  }
-  @media (max-width: 700px) {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Encontrar Alegria em Cristo ❤️</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff5f9;
+      color: #333;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      color: #c75ba6;
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    .carousel-container {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .carousel img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(199, 91, 166, 0.8);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      color: white;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
+
+    .arrow:hover {
+      background-color: #c75ba6;
+    }
+
     .arrow.left {
-      left: 10px; /* para telas menores, fica colado na imagem */
+      left: -20px;
     }
+
     .arrow.right {
-      right: 10px;
+      right: -20px;
     }
-  }
-</style>
+
+    @media (max-width: 650px) {
+      .arrow.left {
+        left: 10px;
+      }
+      .arrow.right {
+        right: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<h1>Encontrar Alegria em Cristo</h1>
+  <h1>Encontrar Alegria em Cristo</h1>
 
-<div class="carousel-container">
-  <button class="arrow left" onclick="previousImage()" aria-label="Imagem anterior">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-  </button>
-  
-  <div class="carousel">
-    <img id="carouselImage" src="Imagem01.jpg" alt="Imagem comemorativa" />
+  <div class="carousel-container">
+    <button class="arrow left" onclick="previousImage()">❮</button>
+
+    <img id="carouselImage" src="Imagem01.jpg" alt="Imagem 1" />
+
+    <button class="arrow right" onclick="nextImage()">❯</button>
   </div>
-  
-  <button class="arrow right" onclick="nextImage()" aria-label="Próxima imagem">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-  </button>
-</div>
 
-<script>
-  const images = [
-    'Imagem01.jpg',
-    'Imagem02.jpg',
-    'Imagem03.jpg',
-    'Imagem04.jpg',
-    'Imagem05.jpg',
-    'Imagem06.jpg'
-  ];
-  let currentIndex = 0;
+  <script>
+    const images = [
+      "Imagem01.jpg",
+      "Imagem02.jpg",
+      "Imagem03.jpg",
+      "Imagem04.jpg",
+      "Imagem05.jpg",
+      "Imagem06.jpg"
+    ];
 
-  function showImage(index) {
-    const imgElement = document.getElementById('carouselImage');
-    imgElement.src = images[index];
-  }
+    let currentIndex = 0;
 
-  function nextImage() {
-    currentIndex = (currentIndex + 1) % images.length;
-    showImage(currentIndex);
-  }
+    function showImage(index) {
+      const img = document.getElementById("carouselImage");
+      img.src = images[index];
+      img.alt = `Imagem ${index + 1}`;
+    }
 
-  function previousImage() {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    showImage(currentIndex);
-  }
-</script>
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+    }
 
+    function previousImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showImage(currentIndex);
+    }
+  </script>
 </body>
 </html>
