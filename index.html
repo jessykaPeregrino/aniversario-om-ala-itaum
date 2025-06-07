@@ -31,7 +31,7 @@
       margin: 0 auto;
     }
 
-    .carousel img {
+    .carousel-container img {
       width: 100%;
       height: auto;
       border-radius: 16px;
@@ -72,24 +72,22 @@
       margin-top: 20px;
       display: flex;
       justify-content: center;
-      gap: 12px;
+      gap: 15px;
       flex-wrap: wrap;
     }
 
-    .btn {
+    .buttons a {
       background-color: #c75ba6;
       color: white;
-      border: none;
       padding: 10px 16px;
       border-radius: 8px;
-      cursor: pointer;
+      text-decoration: none;
       font-size: 14px;
       transition: background-color 0.3s;
-      text-decoration: none;
     }
 
-    .btn:hover {
-      background-color: #a24488;
+    .buttons a:hover {
+      background-color: #a44a8b;
     }
 
     @media (max-width: 650px) {
@@ -108,16 +106,14 @@
 
   <div class="carousel-container">
     <button class="arrow left" onclick="previousImage()">❮</button>
-
     <img id="carouselImage" src="Imagem01.jpg" alt="Imagem 1" />
-
     <button class="arrow right" onclick="nextImage()">❯</button>
   </div>
 
   <div class="buttons">
-    <a id="saveBtn" class="btn" download target="_blank">💾 Salvar imagem</a>
-    <a id="whatsBtn" class="btn" target="_blank">📤 WhatsApp</a>
-    <a id="fbBtn" class="btn" target="_blank">📘 Facebook</a>
+    <a id="saveBtn" download target="_blank">💾 Salvar imagem</a>
+    <a id="whatsBtn" target="_blank">📤 WhatsApp</a>
+    <a id="fbBtn" target="_blank">📘 Facebook</a>
   </div>
 
   <script>
@@ -134,17 +130,14 @@
 
     function showImage(index) {
       const img = document.getElementById("carouselImage");
-      const imageName = images[index];
-      img.src = imageName;
+      img.src = images[index];
       img.alt = `Imagem ${index + 1}`;
 
-      // Atualiza o botão de salvar
-      document.getElementById("saveBtn").href = imageName;
-
-      // Atualiza o link do WhatsApp e Facebook
-      const pageURL = encodeURIComponent(window.location.href);
-      document.getElementById("whatsBtn").href = `https://api.whatsapp.com/send?text=${pageURL}`;
-      document.getElementById("fbBtn").href = `https://www.facebook.com/sharer/sharer.php?u=${pageURL}`;
+      // Atualizar links dos botões
+      document.getElementById("saveBtn").href = images[index];
+      const pageUrl = window.location.href;
+      document.getElementById("whatsBtn").href = `https://wa.me/?text=${encodeURIComponent(pageUrl)}`;
+      document.getElementById("fbBtn").href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
     }
 
     function nextImage() {
@@ -157,7 +150,7 @@
       showImage(currentIndex);
     }
 
-    // Inicia com a primeira imagem
+    // Mostrar imagem inicial com links
     showImage(currentIndex);
   </script>
 </body>
