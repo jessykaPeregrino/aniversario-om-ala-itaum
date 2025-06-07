@@ -19,15 +19,14 @@
       color: #b15c9e;
     }
 
-    .carousel {
+    .carousel-container {
       position: relative;
-      max-width: 90%;
+      max-width: 600px;
       margin: 30px auto;
     }
 
     .carousel img {
       width: 100%;
-      max-width: 600px;
       height: auto;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -43,10 +42,11 @@
       cursor: pointer;
       padding: 10px;
       border-radius: 50%;
+      z-index: 10;
     }
 
-    .arrow.left { left: -50px; }
-    .arrow.right { right: -50px; }
+    .arrow.left { left: -40px; }
+    .arrow.right { right: -40px; }
 
     .buttons {
       margin: 20px auto;
@@ -85,7 +85,7 @@
 
   <h1>Aniversário da OM - Ala Itaum</h1>
 
-  <div class="carousel">
+  <div class="carousel-container">
     <button class="arrow left" onclick="previousImage()">&#8592;</button>
     <img id="carouselImage" src="Imagem01.jpg" alt="Imagem comemorativa">
     <button class="arrow right" onclick="nextImage()">&#8594;</button>
