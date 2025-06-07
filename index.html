@@ -72,8 +72,8 @@
       margin-top: 20px;
       display: flex;
       justify-content: center;
+      gap: 12px;
       flex-wrap: wrap;
-      gap: 10px;
     }
 
     .btn {
@@ -134,21 +134,17 @@
 
     function showImage(index) {
       const img = document.getElementById("carouselImage");
-      const imgPath = images[index];
-      img.src = imgPath;
+      const imageName = images[index];
+      img.src = imageName;
       img.alt = `Imagem ${index + 1}`;
 
-      // Atualiza links dos botões
-      document.getElementById("saveBtn").href = imgPath;
+      // Atualiza o botão de salvar
+      document.getElementById("saveBtn").href = imageName;
 
-      const siteURL = encodeURIComponent(window.location.href);
-      const imageURL = encodeURIComponent(imgPath);
-
-      document.getElementById("whatsBtn").href =
-        `https://api.whatsapp.com/send?text=${siteURL}`;
-      
-      document.getElementById("fbBtn").href =
-        `https://www.facebook.com/sharer/sharer.php?u=${siteURL}`;
+      // Atualiza o link do WhatsApp e Facebook
+      const pageURL = encodeURIComponent(window.location.href);
+      document.getElementById("whatsBtn").href = `https://api.whatsapp.com/send?text=${pageURL}`;
+      document.getElementById("fbBtn").href = `https://www.facebook.com/sharer/sharer.php?u=${pageURL}`;
     }
 
     function nextImage() {
@@ -164,6 +160,5 @@
     // Inicia com a primeira imagem
     showImage(currentIndex);
   </script>
-
 </body>
 </html>
